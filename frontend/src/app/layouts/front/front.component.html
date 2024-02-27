@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Ecommerce</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="togglerNavbar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse navbar-show"
+      [className]="
+        showNavMenue
+          ? 'collapse navbar-collapse navbar-show'
+          : 'collapse navbar-collapse navbar-hide'
+      "
+      id="navbarNav"
+    >
+      <ul class="navbar-nav nav-list-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+
+        <div *ngIf="isAuth" class="user-links">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/profile/', id]">profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart">cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/order">order</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/dashboard">admin</a>
+          </li> -->
+        </div>
+
+        <div *ngIf="!isAuth" class="d-flex auth-action">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">login</a>
+          </li>
+        </div>
+      </ul>
+      <button
+        *ngIf="isAuth"
+        class="btn btn-secondary logout-btn ms-auto"
+        (click)="logout()"
+      >
+        logout
+      </button>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

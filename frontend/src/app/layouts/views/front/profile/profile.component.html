@@ -1,0 +1,35 @@
+<p>profile works!</p>
+
+<div *ngIf="!isLooding" class="profile-contianer bg-primary">
+  <div class="profile-card">
+    <img
+      [src]="user.image.url"
+      [alt]="user.username"
+      srcset=""
+      class="profile-card-img"
+    />
+    <h3>{{ user.username }}</h3>
+  </div>
+
+  <input
+    type="file"
+    class="file-upload"
+    (change)="insertImage($event.target)"
+  />
+  <div class="d-flex">
+    <span>email : </span> <span class="text-white ms-2"> {{ user.email }}</span>
+  </div>
+</div>
+
+<div class="loader" *ngIf="isLooding">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container table-container" *ngIf="!isLooding && users.length">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">num</th>
+        <th scope="col">image</th>
+        <th scope="col">username</th>
+
+        <th scope="col">date :</th>
+
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users; index as i">
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img [src]="user.image.url" [alt]="user?.username" class="img-cart" />
+        </td>
+        <td>{{ user.username }}</td>
+
+        <td>{{ user.createdAt | date }}</td>
+
+        <td>
+          <div class="users-actions">
+            <a routerLink="" class="users-info">More info</a>
+
+            <i class="fa-solid fa-trash delete-icon mx-3"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="loader" *ngIf="isLooding">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

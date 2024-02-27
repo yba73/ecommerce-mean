@@ -1,0 +1,38 @@
+.table-container {
+  margin-left: 200px;
+}
+.img-cart {
+  width: 50px;
+  height: 50px;
+}
+.delete-icon {
+  color: brown;
+  cursor: pointer;
+  padding: 3px;
+}
+.totalamount-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.totalamount-info-text {
+  color: #3498db;
+}
+.totalamount-info-count {
+  font-size: 30px;
+  color: white;
+}
+.livraison {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.livraison-text {
+  font-size: 25px;
+  color: #f1c40f;
+  text-transform: capitalize;
+}
+.livraison-price {
+  font-size: 30px;
+  color: white;
+}

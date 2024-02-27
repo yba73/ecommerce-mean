@@ -1,0 +1,24 @@
+<div *ngIf="!isLooding" class="product-details mx-auto mt-5">
+  <img [src]="product.image.url" class="product-img" [alt]="product.title" />
+  <div class="product-info">
+    <h5>{{ product.title }}</h5>
+    <p>
+      {{ product.description }}
+    </p>
+    <span class="price">
+      price : <span class="price-info">{{ product.price }}</span>
+    </span>
+
+    <span *ngIf="product.count" class="count"
+      >count : <span class="count-info">{{ product.count }}</span></span
+    >
+    <span *ngIf="!product.count">{{ product.title }} is not available</span>
+
+    <button
+      class="btn btn-primary me-auto mt-5"
+      *ngIf="isAuth && product.count"
+    >
+      add product
+    </button>
+  </div>
+</div>

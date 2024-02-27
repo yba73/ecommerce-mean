@@ -1,0 +1,29 @@
+.dashborad-header {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  width: 100%;
+}
+.dashborad-header-items {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+
+  margin: 0 auto;
+}
+.dashborad-header-card {
+  background-color: #ecf0f1;
+  width: 30%;
+  text-align: center;
+  border-radius: 10px;
+}
+.dashborad-header-card-haader {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.book-icon,
+.users-icon,
+.order-icon {
+  font-size: 30px;
+}

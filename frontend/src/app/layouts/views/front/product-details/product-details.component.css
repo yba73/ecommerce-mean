@@ -1,0 +1,26 @@
+.product-details {
+  display: flex;
+  width: 80%;
+  border: 1px solid gray;
+}
+.product-img {
+  width: 200px;
+  height: 400px;
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #d7dbdd;
+  padding: 5px;
+}
+.count,
+.price {
+  font-size: 25px;
+}
+.count-info,
+.price-info {
+  font-size: 30px;
+  color: white;
+  margin-left: 10px;
+}

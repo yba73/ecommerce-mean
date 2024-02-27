@@ -1,0 +1,9 @@
+README.md
+Screenshot/
+client/
+clothes-shop.png
+myfile.txt
+node_modules/
+package-lock.json
+package.json
+server/

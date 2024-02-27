@@ -1,0 +1,33 @@
+<div class="card product-card-child" *ngIf="!isLooding">
+  <img
+    [src]="product.image.url"
+    class="card-img-top product-img"
+    [alt]="product.title"
+  />
+  <div class="card-body">
+    <h5 class="card-title my-3">{{ product.title }}</h5>
+
+    <span *ngIf="!product.count" class="text-danger"> not available</span>
+
+    <!-- <p class="card-text">
+      {{ product.description }}
+    </p> -->
+    <span
+      class="d-block text-warning product-card-see-more"
+      (click)="goToProductDetails()"
+      >see more</span
+    >
+    <div class="card-product-actions d-flex mx-auto justify-content-center">
+      <button
+        class="btn btn-primary my-2"
+        *ngIf="isAuth && product.count"
+        (click)="addToCart(product._id)"
+      >
+        add
+      </button>
+      <button class="btn btn-danger mx-3 my-2" *ngIf="isAdmin && product.count">
+        delete
+      </button>
+    </div>
+  </div>
+</div>

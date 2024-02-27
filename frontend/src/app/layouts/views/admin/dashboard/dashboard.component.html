@@ -1,0 +1,144 @@
+<div class="dashborad-header container">
+  <div class="dashborad-header-items">
+    <div class="dashborad-header-card">
+      <div class="dashborad-header-card-haader">
+        <i class="fa-solid fa-book book-icon"></i>
+        <h1>books</h1>
+      </div>
+      <span>count : </span>
+    </div>
+    <div class="dashborad-header-card">
+      <div class="dashborad-header-card-haader">
+        <i class="fa-solid fa-money-check order-icon"></i>
+        <h1>orders</h1>
+      </div>
+      <span>count : </span>
+    </div>
+    <div class="dashborad-header-card">
+      <div class="dashborad-header-card-haader">
+        <i class="fa-solid fa-user users-icon"></i>
+        <h1>title</h1>
+      </div>
+      <span>count : </span>
+    </div>
+  </div>
+</div>
+
+<div class="form-contianer contianer row">
+  <form
+    class="d-flex flex-column mx-auto bg-primary p-3 rounded mt-4 col col-xs-5 col-sm-4 col-md-4 col-lg-4"
+    (ngSubmit)="createProduct()"
+    [formGroup]="productForm"
+  >
+    <div class="mb-3 auto">
+      <label for="exampleInputEmail1" class="form-label">title address</label>
+      <input
+        type="text"
+        class="form-control"
+        autofocus
+        formControlName="title"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        class="form-text text-muted error-message"
+        *ngIf="title?.touched && title?.dirty && errors?.title"
+        >{{ errors.title }}
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">description</label>
+
+      <textarea
+        type="text"
+        class="form-control"
+        formControlName="description"
+        (ngModelChange)="showErros()"
+      ></textarea>
+
+      <small
+        class="form-text text-muted error-message"
+        *ngIf="
+          description?.touched && description?.dirty && errors?.description
+        "
+        >{{ errors.description }}
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">image</label>
+
+      <input
+        type="file"
+        class="form-control"
+        formControlName="image"
+        (change)="showErros($event.target)"
+      />
+
+      <small
+        class="form-text text-muted error-message"
+        *ngIf="image?.touched && errors?.image"
+        >{{ errors.image }}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="price"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        id="emailHelp"
+        class="form-text text-muted error-message"
+        *ngIf="price?.touched && price?.dirty && errors?.price"
+        >{{ errors.price }}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">genre</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="genre"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        id="emailHelp"
+        class="form-text text-muted error-message"
+        *ngIf="genre?.touched && genre?.dirty && errors?.genre"
+        >{{ errors.genre }}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">count</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="count"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        class="form-text text-muted error-message"
+        *ngIf="count?.touched && count?.dirty && errors?.count"
+        >{{ errors.count }}
+      </small>
+    </div>
+
+    <div
+      class="from-action d-flex flex-column align-items-center justify-content-center"
+    >
+      <button
+        type="submit"
+        class="btn btn-success w-50 mx-auto d-block"
+        [disabled]="errors.invalid"
+      >
+        create new product
+      </button>
+    </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>

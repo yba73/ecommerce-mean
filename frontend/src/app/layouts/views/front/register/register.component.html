@@ -1,0 +1,75 @@
+<div class="form-contianer contianer row">
+  <form
+    class="d-flex flex-column mx-auto bg-primary p-3 rounded mt-4 col col-xs-5 col-sm-4 col-md-4 col-lg-3"
+    (ngSubmit)="signUp()"
+    [formGroup]="registerForm"
+  >
+    <div class="mb-3 auto">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        aria-describedby="emailHelp"
+        autofocus
+        formControlName="email"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        id="emailHelp"
+        class="form-text text-muted error-message"
+        *ngIf="email?.touched && email?.dirty && errors?.email"
+        >{{ errors.email }}
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+
+      <input
+        type="text"
+        class="form-control"
+        formControlName="username"
+        (ngModelChange)="showErros()"
+      />
+
+      <small
+        id="emailHelp"
+        class="form-text text-muted error-message"
+        *ngIf="username?.touched && username?.dirty && errors?.username"
+        >{{ errors.username }}
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="password"
+        (ngModelChange)="showErros()"
+      />
+      <small
+        id="emailHelp"
+        class="form-text text-muted error-message"
+        *ngIf="password?.touched && password?.dirty && errors?.password"
+        >{{ errors.password }}
+      </small>
+    </div>
+    <div
+      class="from-action d-flex flex-column align-items-center justify-content-center"
+    >
+      <button
+        type="submit"
+        class="btn btn-success w-50 mx-auto d-block"
+        [disabled]="errors.invalid"
+      >
+        Register
+      </button>
+      <div class="d-flex">
+        <span>Already have an account?</span>
+        <a routerLink="/login" class="text-white ms-1">Login</a>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,65 @@
+<div class="container table-container" *ngIf="!isLooding && allOrders.length">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">image</th>
+        <th scope="col">username</th>
+        <th scope="col">phone</th>
+        <th scope="col">adress</th>
+
+        <th scope="col">totalamount :</th>
+        <th scope="col">total :</th>
+        <th scope="col">date :</th>
+
+        <th scope="col">status</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allOrders; index as i">
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img
+            [src]="item.owner.image.url"
+            [alt]="item.owner.username"
+            class="img-cart"
+          />
+        </td>
+        <td>{{ item.owner.username }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.totalamount }}$</td>
+        <td>{{ item.total }}$</td>
+
+        <td>{{ item.createdAt | date }}</td>
+
+        <td>{{ item.status }}</td>
+        <td>
+          <div class="orders-actions d-flex">
+            <a routerLink="" class="text-warring">details</a>
+
+            <i
+              class="fa-solid fa-trash delete-icon ms-auto"
+              (click)="deletOrder(item._id)"
+            ></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="loader" *ngIf="isLooding">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

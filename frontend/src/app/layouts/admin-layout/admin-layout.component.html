@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/admin/dashboard">Ecommerce</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="togglerNavbar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse navbar-show"
+      [className]="
+        showNavMenue
+          ? 'collapse navbar-collapse navbar-show'
+          : 'collapse navbar-collapse navbar-hide'
+      "
+      id="navbarNav"
+    >
+      <ul class="navbar-nav nav-list-center w-100">
+        <button
+          *ngIf="isAdmin"
+          class="btn btn-secondary logout-btn"
+          (click)="logout()"
+        >
+          logout
+        </button>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="side-bar">
+  <ul class="navbar-nav nav-list-center mt-3">
+    <li class="nav-item sider-bar-item">
+      <a
+        class="nav-link active"
+        aria-current="page"
+        routerLink="/admin/dashboard"
+        >Dashboard</a
+      >
+    </li>
+
+    <li class="nav-item sider-bar-item">
+      <a class="nav-link active" aria-current="page" routerLink="/admin/users"
+        >Users</a
+      >
+    </li>
+    <li class="nav-item sider-bar-item">
+      <a class="nav-link active" aria-current="page" routerLink="/admin/orders"
+        >orders</a
+      >
+    </li>
+
+    <li class="nav-item sider-bar-item">
+      <a
+        class="nav-link active"
+        aria-current="page"
+        routerLink="/admin/products"
+        >products</a
+      >
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

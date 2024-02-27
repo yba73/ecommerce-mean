@@ -1,0 +1,79 @@
+<div *ngIf="!isLooding" class="p-3">
+  <button
+    *ngIf="cart.length"
+    class="btn btn-danger ms-auto d-block"
+    (click)="deleteAllProductFromCart(userId)"
+  >
+    delete all
+  </button>
+
+  <div *ngFor="let item of cart">
+    <div class="product-card mx-auto my-5">
+      <img
+        [src]="item.product.image.url"
+        class="product-img"
+        [alt]="item.product.title"
+      />
+      <div class="product-info">
+        <i
+          class="fa-solid fa-trash delete-icon ms-auto"
+          (click)="deleteProductFromCart(item.product._id)"
+        ></i>
+
+        <h5>{{ item.product.title }}</h5>
+
+        <p>
+          {{ item.product.description }}
+        </p>
+        <div class="cart-actions">
+          <button
+            class="btn btn-primary btn-quantity"
+            [disabled]="!item.product.count"
+            (click)="changeQuantity({ id: item.product._id, payload: 1 })"
+          >
+            +
+          </button>
+          <span class="item-quantity"> {{ item.quantity }} </span>
+          <button
+            class="btn btn-danger btn-quantity"
+            [disabled]="item.quantity === 1"
+            (click)="changeQuantity({ id: item.product._id, payload: -1 })"
+          >
+            -
+          </button>
+        </div>
+
+        <div *ngIf="item.product.count" class="item-count">
+          <span class="item-count-name">stock : </span>
+          <span class="item-count-value ms-2"> {{ item.product.count }}</span>
+        </div>
+        <span *ngIf="!item.product.count" class="mx-auto product-not-available">
+          {{ item.product.title }} is not available
+        </span>
+        <h2 class="mx-auto">Total : {{ item.total }}$</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<h1 *ngIf="!cart.length">cart is empty</h1>
+
+<!-- <div class="modal-delete-all">
+  <h1>Are you sure to delete all carts?</h1>
+  <div class="actions">
+    <button class="btn btn-secondary">close</button>
+    <button class="btn btn-danger">yes, delete all</button>
+  </div>
+</div> -->
+
+<div class="loader" *ngIf="isLooding">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+<div>
+  <div class="container mx-auto" *ngIf="carts.length && !isLoodingCart">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">image</th>
+          <th scope="col">title</th>
+          <th scope="col">price</th>
+          <th scope="col">quantity</th>
+          <th scope="col">total :</th>
+
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cart of carts; index as i">
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <img
+              [src]="cart.product.image.url"
+              [alt]="cart.product.title"
+              class="img-cart"
+            />
+          </td>
+          <td>{{ cart.product.title }}</td>
+          <td>{{ cart.product.price }}</td>
+          <td>{{ cart.quantity }}</td>
+          <td>{{ cart.total }}</td>
+
+          <td>
+            <i
+              class="fa-solid fa-trash delete-icon ms-auto"
+              (click)="deleteProductFromCart(cart.product._id)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form
+      class="form-contianer bg-secondary w-50 mx-auto text-center py-3 rounded"
+      [formGroup]="orderForm"
+      (ngSubmit)="sendOrder()"
+    >
+      <div class="totalamount-info">
+        <h3 class="totalamount-info-text">Totalamount :</h3>
+        <span class="totalamount-info-count">{{ totalamount }}$</span>
+      </div>
+      <div class="livraison">
+        <label class="livraison-text form-label"
+          >livraison <span class="livraison-price">30$</span>
+        </label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="livraison"
+          (ngModelChange)="getLivraison()"
+        />
+        <small
+          id="emailHelp"
+          class="form-text text-muted error-message"
+          *ngIf="errors?.livraison"
+          >{{ errors.livraison }}
+        </small>
+      </div>
+
+      <h1>Tota: {{ total }}$</h1>
+
+      <div class="mb-3">
+        <label class="form-label">address</label>
+        <input
+          type="text"
+          class="form-control w-75 mx-auto"
+          formControlName="address"
+          (ngModelChange)="showErros()"
+        />
+        <small
+          id="emailHelp"
+          class="form-text text-muted error-message"
+          *ngIf="address?.touched && address?.dirty && errors?.address"
+          >{{ errors.address }}
+        </small>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">phone number</label>
+        <input
+          type="number"
+          class="form-control w-75 mx-auto"
+          id=""
+          formControlName="phone"
+          (ngModelChange)="showErros()"
+        />
+        <small
+          id="emailHelp"
+          class="form-text text-muted error-message"
+          *ngIf="phone?.touched && phone?.dirty && errors?.phone"
+          >{{ errors.phone }}
+        </small>
+      </div>
+
+      <button class="btn btn-success" type="submit" [disabled]="errors.invalid">
+        send order
+      </button>
+    </form>
+  </div>
+
+  <h1 *ngIf="!carts.length">orders is empty</h1>
+
+  <div class="container">
+    <button
+      *ngIf="!toogleOldOrder && oldCarts.length && !isLoodingOrders"
+      class="btn btn-primary"
+      (click)="toogleOldOrders()"
+    >
+      show old order
+    </button>
+  </div>
+
+  <div
+    class="container"
+    *ngIf="oldCarts.length && toogleOldOrder && !isLoodingOrders"
+  >
+    <button
+      *ngIf="toogleOldOrder"
+      class="btn btn-primary my-4"
+      (click)="toogleOldOrders()"
+    >
+      hide old order
+    </button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">image</th>
+          <th scope="col">title</th>
+          <th scope="col">price</th>
+          <th scope="col">quantity</th>
+          <th scope="col">total :</th>
+          <th scope="col">data :</th>
+
+          <th scope="col">status</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of oldCarts; index as i">
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <img
+              [src]="item?.image?.url"
+              [alt]="item?.title"
+              class="img-cart"
+            />
+          </td>
+          <td>{{ item?.title }}</td>
+          <td>{{ item?.price }}</td>
+          <td>{{ item?.quantity }}</td>
+          <td>{{ item.total }}$</td>
+          <td>{{ item.createdAt | date }}</td>
+
+          <td>{{ item.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="loader" *ngIf="isLoodingOrders || isLoodingCart">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
